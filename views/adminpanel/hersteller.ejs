@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/adminpanel.css">
+    <title>Hersteller</title>
+</head>
+<body>
+    <div id = "topbar_hersteller_anlegen">
+        <form method = "post" action = "/adminpanel/hersteller_anlegen">
+            <a>Hersteller anlegen</a>
+            <a>Name: </a><input id = "input_hersteller_anlegen" name = "input_hersteller">
+            <a>img: </a><input id = "input_hersteller_img" name = "input_hersteller_img">
+            <button id = "hersteller_anlegen">absenden</button>
+        </form>
+    </div>
+    <div id = "bottombar_hersteller_anlegen"></div>
+
+    <script>
+        const bottombar = document.getElementById("bottombar_hersteller_anlegen")
+        const objekt_hersteller = <%- JSON.stringify(hersteller) %>
+        objekt_hersteller.forEach(element => {
+            var container = document.createElement("div")
+            var form = document.createElement("form")
+            form.action = "/adminpanel/hersteller_loeschen?key=" + element._id
+            form.method = "post"
+            container.classList.add("hersteller_container")
+            container.textContent = element.name
+            container.append(form)
+            var button_delete = document.createElement("button")
+            button_delete.textContent = "löschen"
+            form.append(button_delete)
+
+            container.append(form)
+
+            bottombar.append(container)
+            
+
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/adminpanel.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <title>Artikel anlegen</title>
+</head>
+<body>
+    <div id = wrapper_artikel_anlegen>
+        <form method="post" action="/adminpanel/artikel_anlegen">
+            <div id = "leftpanel_artikel_anlegen">
+                <a>Artikelnummer</a><br>
+                <a>Kategorie</a><br>
+                <a>Hersteller</a><br>
+                <a>Bezeichnung</a><br>
+                <a>Beschreibung</a><br>
+                <a>Bild</a><br>
+                <a>Netto Preis</a><br><br>
+                <a>Technische Daten</a><br>
+                <a>Key</a><br>
+                <a>Value 1</a><br>
+                <a>Value 2</a><br>
+                <a>submit</a>
+            </div>
+            <div id = "rightpanel_artikel_anlegen">
+                <input name = "artikelnummer" disabled = "true"> <br>
+                <select id = kategorie name = "kategorie"></select> <br>
+                <select id="hersteller" name = "hersteller"></select> <br>
+                <input name = "bezeichnung"> <br>
+                <textarea name = "beschreibung" id = "beschreibung"></textarea><br>
+                <input name = "bild"><br>
+                <input name = "netto_preis"><br><br>
+                
+                <input name = "key0">
+                <input name = "value_10">
+                <input name = "value_20">
+                <button id = "add_key_value" type = "button">add</button>
+                <button type="submit">absenden</button><br>
+
+            </div>
+
+            <script>
+                var index = 1;
+                const button = document.getElementById("add_key_value")
+                button.addEventListener("click", add_key_value_pair)
+
+                function add_key_value_pair(){
+                    const rightpanel_artikel_anlegen = document.getElementById("rightpanel_artikel_anlegen")
+                    const input_key = document.createElement("input")
+                    const input_value_1 = document.createElement("input")
+                    const input_value_2 = document.createElement("input")
+                    const line_break = document.createElement("br")
+                    input_key.setAttribute("name", "key" + index)
+                    input_value_1.setAttribute("name", "value_1" + index)
+                    input_value_2.setAttribute("name", "value_2" + index)
+                    rightpanel_artikel_anlegen.append(input_key)
+                    rightpanel_artikel_anlegen.append(line_break)
+                    rightpanel_artikel_anlegen.append(input_value_1)
+                    rightpanel_artikel_anlegen.append(line_break)
+                    rightpanel_artikel_anlegen.append(input_value_2)
+                    rightpanel_artikel_anlegen.append(line_break)
+                    index += 1
+                }
+            </script>
+
+            <script>
+                const select_hersteller = document.getElementById("hersteller")
+                const objekt_hersteller = <%- JSON.stringify(hersteller) %>;
+                objekt_hersteller.forEach(element => {
+                    var option = document.createElement("option")
+                    console.log(element)
+                    option.textContent = element.name
+                    option.value = element._id
+                    select_hersteller.append(option)
+                    var button = document.createElement("button")
+                    button.textContent = "delete"
+                    
+                })
+
+            </script>
+
+            <script>
+                const select_kategorien = document.getElementById("kategorie")
+                const objekt_kategorie = <%- JSON.stringify(kategorien) %>;
+                objekt_kategorie.forEach(element => {
+                    console.log(element)
+                    for (var i = 0; i < element.sub_kategorie.length; i++){
+                        var option = document.createElement("option")
+                        option.textContent = element.sub_kategorie[i].name
+                        option.value = element.sub_kategorie[i].id
+                        select_kategorien.append(option)
+                    }
+                });
+            </script>
+            
+        </form>
+    </div>
+    <div id = artikel>
+                <script>
+                    var artikel = <%- JSON.stringify(artikel) %>;
+                    artikel.forEach((element)=>{
+                        console.log(element)
+                        const wrapper = document.getElementById("artikel")
+                        var container = document.createElement("div")
+                        var caption = document.createElement("a")
+                        caption.textContent = element.bezeichnung
+                        var kategorie = document.createElement("a")
+                        kategorie.textContent = element.kategorie.name
+                        var hersteller = document.createElement("a")
+                        hersteller.textContent = element.hersteller.name
+                        var beschreibung = document.createElement("a")
+                        beschreibung.textContent = element.beschreibung
+                        var bild = document.createElement("a")
+                        bild.textContent = element.bild
+                        var preis = document.createElement("a")
+                        preis.textContent = element.netto_preis.$numberDecimal
+                        var button_delete = document.createElement("button")
+                        button_delete.textContent = "löschen"
+                        var form = document.createElement("form")
+                        form.action = "/adminpanel/artikel_loeschen?key=" + element._id
+                        form.method = "post"
+                        var technische_daten = []
+                        for (var i = 0; i < element.technische_daten.attributes.length; i++) {
+                            console.log(element.technische_daten.attributes[i])
+                        }
+                        form.append(caption)
+                        form.append(document.createElement("br"))
+                        form.append(kategorie)
+                        form.append(document.createElement("br"))
+                        form.append(hersteller)
+                        form.append(document.createElement("br"))
+                        form.append(beschreibung)
+                        form.append(document.createElement("br"))
+                        form.append(bild)
+                        form.append(document.createElement("br"))
+                        form.append(preis)
+                        form.append(document.createElement("br"))
+                        form.append(button_delete)
+
+                        container.append(form)
+                        wrapper.append(container)
+
+                    })
+                </script>
+            </div>
+</body>
+</html>

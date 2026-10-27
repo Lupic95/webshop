@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/global.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "ad_window">
+    <script>
+        const ad_window = document.getElementById("ad_window")
+        let index = 0
+        const ads = <%- JSON.stringify(ad_files) %>        
+
+        renderAd()
+
+        async function renderAd() {
+            while (true) {
+                clearDom_ad()
+
+                const img = document.createElement("img")
+                img.src = ads[index]
+                ad_window.append(img)
+
+                index = (index + 1) % ads.length
+
+                await sleep(5000)
+            }
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms))
+        }
+
+        function clearDom_ad() {
+            while (ad_window.firstChild) {
+                ad_window.firstChild.remove()
+            }
+        }
+    </script>
+
+    </div>
+</body>
+</html>

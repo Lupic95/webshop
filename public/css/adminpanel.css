@@ -1,0 +1,83 @@
+#wrapper_artikel_anlegen{
+    width: 50%;
+    float:left;
+}
+
+#leftpanel_artikel_anlegen{
+    width: 30%;
+    height: 100%;
+    float: left;
+}
+
+#rightpanel_artikel_anlegen{
+    width: 70%;
+    height: 100%;
+    float: right;
+}
+
+#topbar_hersteller_anlegen{
+    height:80px;
+    width: 100%;
+}
+
+#bottombar_hersteller_anlegen{
+    display: flex;
+    justify-content: space-between;
+    height:70%;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.hersteller_container{
+    width: 180px;
+    height: 100px;
+    background-color: aliceblue;
+    text-align: center;
+}
+
+#beschreibung{
+    width: 60%;
+    height: 20%;
+}
+
+#leftpanel_kategorie_add{
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+#leftpanel_kategorie_top{
+    width: 100%;
+    height: 20%;
+}
+
+#leftpanel_kategorie_bottom{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.kategorie_container {
+    width: 180px;
+    height: 100px;
+    background-color: aliceblue;
+    text-align: center;
+}   
+
+#rightpanel_kategorie_add{
+    width: 50%;
+    height: 100%;
+    float: right;
+}
+
+#rightpanel_kategorie_bottom {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+#artikel {
+    width: 50%;
+    float: right;
+}

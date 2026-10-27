@@ -1,0 +1,51 @@
+html *
+{
+   font-size: 1em !important;
+   /*color: #000 !important;*/
+   font-family: Arial !important;
+}
+
+body {
+   color: black;
+   background-color: white;
+}
+
+body.darkmode {
+   color: white;
+   background-color: #000;
+}
+
+#wrapper {
+   width: 60%;
+   margin-left: 20%;
+}
+#commercials {
+   width: 100%;
+   height: 100px;
+   float: left;
+   display: flex;
+   justify-content: space-between;
+   flex-flow: row;
+}
+
+.commercialContainer{
+   width: 130px;
+   height: 100%;
+   text-align: center;
+}
+
+.commercialimg{
+   width: 130px;
+   height: 100%;
+}
+
+#ad_window {
+   position: relative;
+   margin-top: 80px;
+   margin-right: 80px;
+   width: 160px;
+   height: 600px; 
+   background-color: #000;
+   float: right;
+}
+

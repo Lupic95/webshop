@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/partials/cookieWindow.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <title>Document</title>
+</head>
+<body>  
+    <div id = "wrapper">
+        <h1>Leg deine Cookie Einstellungen fest</h1>
+        <p>Webshop verwendet Cookies und ähnliche Technologien um:</p>
+        <a style = "margin-left: 5%;">- die Website funktionsfähig zu halten und ordnungsgemäß zu betreiben</a>
+        <a style = "margin-left: 5%">- Betrug und Missbrauch zu verhindern</a>
+        <a style = "margin-left: 5%">- die Nutzung der Website und Leistungskennzahlen zu überwachen</a>
+        
+        <p>Wenn du "Alle akzeptieren" wählst, verwenden wir Cookies auch um:</p>
+        <a style = "margin-left: 5%;">- deine Empfehlungen und Anzeigen zu personalisieren</a>
+        <a style = "margin-left: 5%;">- die Performance von Anzeigen zu messen</a>
+        <a style = "margin-left: 5%;">- neue Funktionen und Dienste zu entwickeln und zu verbessern</a>
+    
+        <p>Wenn du "optionale Cookies ablehnen" wählst, verwenden wir keine Cookies für Dienste
+            zusätzlichen Zwecke. Du kannst die Cookie-Einstellungen in deinen Einstellungen aktualisieren
+        </p>
+        <form method="post" action = "/cookies">
+            <button class = "button" name = "action" style = "background-color: red; width: 40%;" value = "ablehnen" type ="submit" >optionales ablehnen</button>
+            <button class = "button" name = "action" style = "background-color: green; width: 40%" value = "annehmen" type ="submit" >annehmen</button>
+        </form>
+    </div>  
+    
+</body>
+</html>

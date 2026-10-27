@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "commercials">
+        <script>
+            const commercials = document.getElementById("commercials")
+            const manufacture = <%- JSON.stringify(commercial_right) %>;
+            const chunk = chunkArray(manufacture, 3)
+           
+            function chunkArray(array, chunkSize) {
+                let result = []
+                for (var i = 0; i < array.length; i += chunkSize) {
+                    let chunk = array.slice(i, i + chunkSize);
+                    result.push(chunk)
+                }
+                return result;
+            }
+
+            renderChunks(chunk)
+            async function renderChunks(chunks) {
+      
+                for (var i = 0; i < chunks.length; i ++) {
+                    clearDom_commercials()
+                    //setInterval(function () {clearDom()}, 2000);
+                    for (var x = 0; x < chunks[i].length; x++) {
+                        const container = document.createElement("div")
+                        container.classList.add("commercialContainer")
+                        const caption = document.createElement("a")
+                        const img = document.createElement("img")
+                        caption.text = chunks[i][x].name
+                        img.src = chunks[i][x].img
+                        img.classList.add("commercialimg")
+                        container.append(img)
+                        container.append(caption)
+                        commercials.append(container)
+
+                    }   
+                    await sleep(5000)
+                }
+
+                if (i == chunks.length) {
+                    renderChunks(chunk)
+                }
+            }   
+            
+            function clearDom_commercials() {
+                while (commercials.firstChild) {
+                    commercials.firstChild.remove()
+                }
+            }
+
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+        </script>
+    </div>
+</body>
+</html>

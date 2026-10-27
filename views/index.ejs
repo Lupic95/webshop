@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/global.css">
+    
+    <title>index</title>
+</head>
+<body>
+    
+    <div id = wrapper>
+        <%- include("partials/header", {title: "Header", queryObjekt})%>
+
+        
+
+        <% if (hasCookie) { %>
+        <% } else { %>
+            <%- include("partials/cookieWindow", {title: "Cookie Window"})%>
+        <% } %>
+
+        <%- include("partials/commercials", {title: "commercials", commercial_right})%>
+        
+    </div> 
+    <%- include("partials/ad", {title: "ad", ad_files})%>
+    
+</body>
+<script src ="../js/darkmode.js"></script>
+</html>

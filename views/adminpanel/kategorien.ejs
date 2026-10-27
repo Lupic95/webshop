@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/adminpanel.css">
+    <link rel="stylesheet" href="/css/global.css">
+    <title>Kategorien anlegen</title>
+</head>
+<body>
+    <div id = "leftpanel_kategorie_add">
+        <div id = "leftpanel_kategorie_top">
+            <form method = "post", action = "/adminpanel/kategorie_anlegen">
+                    <h1>Haupt Kategorie</h1>
+                    <input name = "hauptkategorie_input">
+                    <button>absenden</button>
+                </form>
+                <div id = leftpanel_kategorie_bottom>
+                    <script>
+                        const objekt_kategorien = <%- JSON.stringify(kategorien) %>
+                        objekt_kategorien.forEach(element => {
+                            const leftpanel = document.getElementById("leftpanel_kategorie_bottom")
+                            var container = document.createElement("div")
+                            var form = document.createElement("form")
+                            form.action = "/adminpanel/kategorie_loeschen?key=" + element._id
+                            form.method = "post"
+                            container.classList.add("kategorie_container")
+                            container.textContent = element.name
+                            container.append(form)
+                            var button_delete = document.createElement("button")
+                            button_delete.textContent = "löschen"
+                            form.append(button_delete)
+                            container.append(form)
+
+                            leftpanel.append(container)
+                        });
+                    </script>
+                </div>
+        </div>
+    </div>
+    <div id = "rightpanel_kategorie_add">
+        <div id = "rightpanel_kategorie_top">
+            <form method = "post" action = "/adminpanel/subkategorie_anlegen">
+                <h1>Sub Kategorie</h1>
+                <select id = "kategorie_refer" name= "kategorie_refer"></select>
+                <a>Sub kategorie</a>
+                <input name = "sub_kategorie">
+                <button id = "absenden">absenden</button>
+            </form>
+        </div>
+        <div id = "rightpanel_kategorie_bottom">
+            <script>
+                const select_kategorie_refer = document.getElementById("kategorie_refer")
+                objekt_kategorien.forEach(element => {
+                    const rightpanel_kategorie_bottom = document.getElementById("rightpanel_kategorie_bottom")
+                    var option = document.createElement("option")
+                    option.textContent = element.name
+                    option.value = element._id
+                    select_kategorie_refer.append(option)
+                });
+                const rightpanel_kategorie_bottom = document.getElementById("rightpanel_kategorie_bottom")
+                const objekt_sub_kategorie = <%- JSON.stringify(sub_kategorie) %>
+                objekt_sub_kategorie.forEach((element)=>{
+                    console.log(element)
+                    var container_sub = document.createElement("div")
+                    var form_sub = document.createElement("form")
+                    form_sub.action = "/adminpanel/kategorie_sub_loeschen?key=" + element._id
+                    form_sub.method = "post"
+                    container_sub.classList.add("kategorie_container")
+                    container_sub.textContent = element.name
+                    container_sub.append(form_sub)
+                    var button_delete_sub = document.createElement("button")
+                    button_delete_sub.textContent = "löschen"
+                    form_sub.append(button_delete_sub)
+                    container_sub.append(form_sub)
+                    rightpanel_kategorie_bottom.append(container_sub)
+
+
+                })
+            
+            </script>
+        </div>
+        
+    </div>
+</body>
+</html>
